@@ -1,4 +1,7 @@
 venv/
 backend/treeapp/treeapp/__pycache__/*
 backend/treeapp/User/__pycache__/*
+<<<<<<< HEAD
 backend/treeapp/db.sqlite3
+=======
+>>>>>>> vic-backend
