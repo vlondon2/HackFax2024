@@ -195,30 +195,19 @@ def getUser(request):
 def completeTask(request):
     # Getting sent: id, taskName
     data = json.loads(request.body)
-
     user = User.objects.get(id=data['id'])
-
     userTasks = split(user.tasks)
 
-    for task in userTasks:
-        if (task == data['taskName']):
-            userTasks.remove(task)
-            user.tasks = join(userTasks)
-            break
+    userTasks = [index for index in userTasks if taskList[int(index)]['name'] != data['taskName']]
+    user.tasks = join(userTasks)
 
     user.save()
     
     return JsonResponse({
         "removed": data['taskName'],
-        "tasks": userTasks,
-        "user.tasks": split(user.tasks)
+        "tasks": userTasks
     })
     
-
-
-
-    
-
 
 def join(array):
     if isinstance(array[0], int):
