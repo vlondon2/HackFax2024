@@ -25,7 +25,7 @@ cosmeticsMap = {
     },
 
     'LampPost': {
-        'name': 'LampPost',
+        'name': 'Lamp Post',
         'price': 25,
         'requiredlvl': 1,
         'path': 'assets/LampPost.png'
@@ -52,7 +52,7 @@ taskList = [
     },
 
     {
-        'name': 'Pick up litter',
+        'name': 'Pick up Litter',
         'description': 'Pick up a piece of litter.',
         'xp': 5
     },
@@ -64,7 +64,7 @@ taskList = [
     },
 
     {
-        'name': 'Short shower',
+        'name': 'Short Shower',
         'description': 'Take a 10 minute shower.',
         'xp': 3
     },
@@ -107,6 +107,29 @@ taskList = [
 
 ]
 
+achievementsMap = {
+    'Newbie': {
+        'name': 'Newbie',
+        'description': 'Complete your first daily task.'
+    },
+    'Bronze': {
+        'name': 'Bronze',
+        'description': 'Complete 5 daily tasks.'
+    },
+    'Silver': {
+        'name': 'Silver',
+        'description': 'Complete 10 daily tasks.'
+    },
+    'Gold': {
+        'name': 'Gold',
+        'description': 'Complete 20 daily tasks'
+    },
+    'Completionist': {
+        'name': 'Completionist',
+        'description': 'Own every item.'
+    }
+}
+
 @csrf_exempt
 def createUser(request):
     try:
@@ -127,11 +150,23 @@ def createUser(request):
             tasks = ""
         )
 
+        taskOutput = []
+        newTasks = []
+
+        while len(newTasks) < 4:
+            num = random.randint(0,len(taskList)-1)
+            if (num not in newTasks):
+                newTasks.append(num)
+                taskOutput.append(taskList[num])
+            
+            user.tasks = join(newTasks)
+
         user.save()
 
         return JsonResponse({
             'id':user.id,
-            'username':user.username
+            'username':user.username,
+            'tasks': taskOutput
         })
     except ValueError:
         return JsonResponse({"error": "User already exists"}, status=400)
