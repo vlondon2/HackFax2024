@@ -111,7 +111,7 @@ def createUser(request):
             'username':user.username
         })
     except ValueError:
-        return JsonResponse({"error": "User already exists"})
+        return JsonResponse({"error": "User already exists"}, status=400)
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=400)
     
