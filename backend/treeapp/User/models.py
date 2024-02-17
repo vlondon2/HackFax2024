@@ -13,7 +13,6 @@ class User(models.Model):
     xp = models.IntegerField()
     lvlxp = models.IntegerField()
     gold = models.IntegerField()
-    day = models.IntegerField()
     cosmetics = models.JSONField()
     achievements = models.CharField(max_length=1000)
     tasks = models.ManyToManyField(Task)
