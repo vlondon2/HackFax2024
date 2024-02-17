@@ -12,7 +12,7 @@ from .models import User
 cosmeticsMap = {
     'Bench': {
         'name': 'Bench',
-        'price': 20,
+        'price': 10,
         'requiredlvl': 2,
         'path': 'assets/Bench.png'
     },
@@ -26,7 +26,7 @@ cosmeticsMap = {
 
     'LampPost': {
         'name': 'Lamp Post',
-        'price': 25,
+        'price': 15,
         'requiredlvl': 1,
         'path': 'assets/LampPost.png'
     },
@@ -124,8 +124,8 @@ achievementsMap = {
         'name': 'Gold',
         'description': 'Complete 20 daily tasks'
     },
-    'Completionist': {
-        'name': 'Completionist',
+    'High Roller': {
+        'name': 'High Roller',
         'description': 'Own every item.'
     }
 }
@@ -264,7 +264,6 @@ def completeTask(request):
     data = json.loads(request.body)
     user = User.objects.get(id=data['id'])
     userTasks = split(user.tasks)
-
     userTasks = [index for index in userTasks if taskList[int(index)]['name'] != data['taskName']]
     if len(userTasks) != 0:
         user.tasks = join(userTasks)
@@ -286,6 +285,9 @@ def completeTask(request):
         user.xp -= user.lvlxp
         user.lvlxp = user.level*10
         user.gold += 5
+
+    if not user.newbie:
+        user.newbie = True
 
     user.save()
     
@@ -321,12 +323,14 @@ def buyCosmetic(request):
 
 @csrf_exempt
 def getAllCosmetics(request):
+    user = User.objects.get(id=request.GET.get('id'))
 
     allCosmetics = []
     for cosKey in cosmeticsMap:
         allCosmetics.append(cosmeticsMap[cosKey])
 
-    print(allCosmetics)
+    for name in split(user.cosmetics):
+        allCosmetics.remove(cosmeticsMap[name])
 
     return JsonResponse({
         'cosmetics': allCosmetics
