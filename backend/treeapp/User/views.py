@@ -216,7 +216,10 @@ def completeTask(request):
     userTasks = split(user.tasks)
 
     userTasks = [index for index in userTasks if taskList[int(index)]['name'] != data['taskName']]
-    user.tasks = join(userTasks)
+    if len(userTasks) != 0:
+        user.tasks = join(userTasks)
+    else:
+        user.tasks = ""
 
     user.save()
     
