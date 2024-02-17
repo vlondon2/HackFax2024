@@ -145,6 +145,7 @@ def createUser(request):
             xp=0,
             lvlxp=10,
             gold=0,
+            taskCount=0,
             achievements="",
             cosmetics = "",
             tasks = ""
@@ -288,6 +289,7 @@ def completeTask(request):
 
     if not user.newbie:
         user.newbie = True
+        user.gold += 5
 
     user.save()
     
