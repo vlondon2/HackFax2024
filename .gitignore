@@ -1,7 +1,10 @@
-venv/
-backend/treeapp/treeapp/__pycache__/*
-backend/treeapp/User/__pycache__/*
-<<<<<<< HEAD
+venv
+backend/treeapp/treeapp/__pycache__
+backend/treeapp/User/__pycache__
+backend/treeapp/User/migrations/__pycache__
 backend/treeapp/db.sqlite3
-=======
->>>>>>> vic-backend
+frontend/node_modules
+frontend/.angular
+frontend/.editorconfig
+frontend/.vscode
+

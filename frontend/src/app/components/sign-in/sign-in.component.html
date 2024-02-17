@@ -1,1 +1,36 @@
-<p>sign-in works!</p>
+<div class="sign-in-container">
+
+    <mat-card class="sign-in-card">
+        <mat-card-title class="sign-in-card-title">
+            <span class="sign-in-card-title-text section-title-text">
+                Sign In
+            </span>
+        </mat-card-title>
+        <mat-card-content class="sign-in-card-content">
+
+            <mat-form-field class="username-input-container dense-small-4" appearance="outline">
+                <mat-label class="username-input-label">Username</mat-label>
+                <input matInput class="username-input">
+            </mat-form-field>
+
+            <mat-form-field class="password-input-container dense-small-4" appearance="outline">
+                <mat-label class="password-input-label">Password</mat-label>
+                <input matInput class="password-input">
+            </mat-form-field>
+
+        </mat-card-content>
+
+        <mat-card-actions class="sign-in-card-actions">
+            <button mat-button class="create-account-button" (click)="createAccount()">
+                Create Account
+            </button>
+
+            <button mat-button class="sign-in-button">
+                Sign In
+            </button>
+        </mat-card-actions>
+
+    </mat-card>
+
+
+</div>

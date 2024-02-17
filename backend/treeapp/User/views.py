@@ -11,20 +11,33 @@ cosmeticsMap = {
     'item': 'path'
 }
 
+dailies = [
+    "task1",
+    "task2",
+    "task3",
+    "task4",
+    "task5",
+    "task6",
+    "task7",
+    "task8"
+]
+
 @csrf_exempt
 def createUser(request):
     try:
         data = json.loads(request.body)
+
+        if User.objects.filter(username=data['username']).exists():
+            raise ValueError
 
         user = User.objects.create(
             username=data['username'],
             password=data['password'],
             level=1,
             xp=0,
-            lvlxp=100,
+            lvlxp=10,
             gold=0,
-            cosmetics = "",
-            tasks="",
+            day=0,
             achievements=""
         )
 
@@ -32,14 +45,37 @@ def createUser(request):
 
         return JsonResponse({
             'id':user.id,
-            'username':user.username,
-            'level':user.level,
-            'cosmeticPaths':[],
-            'tasks': []
+            'username':user.username
         })
-    
+    except ValueError:
+        return JsonResponse({"Message": "User already exists"})
     except Exception as e:
         return JsonResponse({"Message": str(e)}, status=400)
+    
+@csrf_exempt
+def createDevUser(request):
+    try:
+        data = json.loads(request.body)
+
+        if User.objects.filter(username=data['username']).exists():
+            raise ValueError
+        
+        user = User.objects.create(
+            username = data['username'],
+            password = data['password'],
+            level = int(data['level']),
+            xp = int(data['xp']),
+            lvlxp = int(data['lvlxp']),
+            gold = int(data['gold']),
+            day = int(data['day']),
+            cosmetics = data['cosmetics'],
+            tasks = data['tasks'],
+            achievements = data['achievements']
+        )
+    except ValueError:
+        JsonResponse({"message": "User already exists"}, status=400)
+    except Exception as e:
+        JsonResponse({"message": str(e)}, status=400)
     
 @csrf_exempt
 def getUser(request):
@@ -56,6 +92,8 @@ def getUser(request):
 
         for i in range(len(cosmetics)):
             paths.append(cosmeticsMap[cosmetics[i]])
+
+        
 
         return JsonResponse({
             'id': user.id,
