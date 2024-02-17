@@ -143,11 +143,9 @@ def createDevUser(request):
 @csrf_exempt
 def getUser(request):
     try:
-        data = json.loads(request.body)
+        user = User.objects.get(username=request.GET.get('username'))
 
-        user = User.objects.get(username=data['username'])
-
-        if data['password'] != user.password:
+        if request.GET.get('password') != user.password:
             raise ValueError    
 
         cosmeticObjects = []
@@ -157,7 +155,7 @@ def getUser(request):
                 cosmeticObjects.append(cosmeticsMap[cosmetic])
 
         taskOutput = []
-        
+
         if user.tasks == "":
             newTasks = []
 
@@ -187,11 +185,38 @@ def getUser(request):
         })
     
     except User.DoesNotExist:
-        return JsonResponse({"eror": "User not found."}, status=404)
+        return JsonResponse({"error": "User not found."}, status=404)
     except ValueError as e:
         return JsonResponse({"error": str(e)}, status=401)
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=400)
+
+@csrf_exempt
+def completeTask(request):
+    # Getting sent: id, taskName
+    data = json.loads(request.body)
+
+    user = User.objects.get(id=data['id'])
+
+    userTasks = split(user.tasks)
+
+    for task in userTasks:
+        if (task == data['taskName']):
+            userTasks.remove(task)
+            user.tasks = join(userTasks)
+            break
+
+    user.save()
+    
+    return JsonResponse({
+        "removed": data['taskName'],
+        "tasks": userTasks,
+        "user.tasks": split(user.tasks)
+    })
+    
+
+
+
     
 
 
