@@ -356,6 +356,8 @@ def getAllCosmetics(request):
         'cosmetics': allCosmetics
     })
 
+
+
     
 
 def join(array):
