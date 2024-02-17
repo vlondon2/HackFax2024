@@ -22,7 +22,10 @@ def createUser(request):
             level=1,
             xp=0,
             lvlxp=100,
-            gold=0
+            gold=0,
+            cosmetics = "",
+            tasks="",
+            achievements=""
         )
 
         user.save()
@@ -48,17 +51,17 @@ def getUser(request):
         if data['password'] != user.password:
             raise ValueError
 
-        # paths = []
-        # cosmetics = separate(user.cosmetics)
+        paths = []
+        cosmetics = separate(user.cosmetics)
 
-        # while len(cosmetics) != 0:
-        #     paths.append()
+        for i in range(len(cosmetics)):
+            paths.append(cosmeticsMap[cosmetics[i]])
 
         return JsonResponse({
             'id': user.id,
             'username':user.username,
             'level': user.level,
-            # 'cosmeticPaths': paths,
+            'cosmeticPaths': paths,
             'tasks': []
         })
     except User.DoesNotExist:
