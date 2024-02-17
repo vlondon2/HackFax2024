@@ -44,6 +44,7 @@ export class ShopComponent implements OnInit{
   public buyCosmetic(cosmeticName: string): void{
     this._userService.buyCosmetic(this.user!.id, cosmeticName).subscribe(response => {
       this._userService.user!.cosmetics = response.inventory;
+      this._userService.user!.gold = response.gold;
       this._userService.getShop(this.user!.id).subscribe((response) => {
         this.cosmetics = response.cosmetics;
       })

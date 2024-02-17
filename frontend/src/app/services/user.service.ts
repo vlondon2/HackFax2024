@@ -50,7 +50,7 @@ export class UserService {
 
   public getShop(userid: number): Observable<User_GetShop_Response_GET>
   {
-    return this._httpClient.get<User_GetShop_Response_GET>(`${this._url}/getShop?id=userid`, {headers: this._headers});
+    return this._httpClient.get<User_GetShop_Response_GET>(`${this._url}/getShop?id=${userid}`, {headers: this._headers});
   }
 
   public completeTask(userid: number, taskName: string): Observable<User_CompleteTask_Response_PATCH>
