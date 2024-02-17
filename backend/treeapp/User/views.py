@@ -13,24 +13,28 @@ cosmeticsMap = {
     'Bench': {
         'name': 'Bench',
         'price': 20,
+        'requiredlvl': 2,
         'path': 'assets/Bench.png'
     },
 
     'Book': {
         'name': 'Book',
         'price': 5,
+        'requiredlvl': 1,
         'path': 'assets/Bench.png'
     },
 
     'LampPost': {
         'name': 'LampPost',
         'price': 25,
+        'requiredlvl': 1,
         'path': 'assets/LampPost.png'
     },
 
     'Lantern': {
         'name': 'Lantern',
-        'price': 10,
+        'price': 5,
+        'requiredlvl': 1,
         'path': 'assets/LanternVer2.png'
     }
 }
@@ -237,7 +241,6 @@ def completeTask(request):
         user.lvlxp = user.level*10
         user.gold += 5
 
-
     user.save()
     
     return JsonResponse({
@@ -261,10 +264,22 @@ def buyCosmetic(request):
 
     user.save()
 
-    JsonResponse({
-        "username"
+    return JsonResponse({
         "itemName": data['itemName'],
         "inventory": userCosmetics
+    })
+
+@csrf_exempt
+def getAllCosmetics(request):
+
+    allCosmetics = []
+    for cosKey in cosmeticsMap:
+        allCosmetics.append(cosmeticsMap[cosKey])
+
+    print(allCosmetics)
+
+    return JsonResponse({
+        'cosmetics': allCosmetics
     })
 
     
