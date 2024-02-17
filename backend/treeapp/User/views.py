@@ -273,12 +273,15 @@ def buyCosmetic(request):
     userCosmetics = split(user.cosmetics)
     userCosmetics.append(data['itemName'])
     user.cosmetics = join(userCosmetics)
-
     user.save()
 
+    owned = []
+    for name in userCosmetics:
+        owned.append(cosmeticsMap[name])
+
+
     return JsonResponse({
-        "itemName": data['itemName'],
-        "inventory": userCosmetics
+        "inventory": owned
     })
 
 @csrf_exempt
