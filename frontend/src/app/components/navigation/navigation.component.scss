@@ -1,0 +1,15 @@
+@import '../../colors.scss';
+
+.navigation-controls {
+    width: 40vw;
+    height: 100vh;
+    background-color: map-get($colors, pastel-green);
+
+}
+
+.nav-button {
+    height: 50px;
+    width: 100%;
+    padding: 10px;
+
+}

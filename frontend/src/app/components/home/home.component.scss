@@ -1,29 +1,74 @@
 @import '../../colors.scss';
 
 :host {
-    .home-container {
-        background-color: map-get($colors, blue);
-        height: 100%;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-    }
 
-    .header-items {
-        display: flex;
-        flex-direction: row;
-        height: 15%;
-    }
+
+
 
     .body-items {
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-grow: 1;
+        height: 70%;
+    }
+
+    .tree-image-container {
+        display: flex;
+        width: 250px;
+
+    }
+
+    .tree-image {
+        width: 100%;
+        height: auto;
     }
 
     .footer-items {
         display: flex;
-        height: 10%;
+        height: 15%;
+    }
+
+
+
+
+
+    .user-name-title {
+
+        text-align: center;
+        color: white;
+    }
+
+    .user-name-frame {
+
+        background-color: map-get($colors, pastel-green);
+        outline: solid 1px map-get($colors, green);
+    }
+
+    .footer-items {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .xp-bar-background {
+        width: 70%;
+        height: 20%;
+        display: flex;
+        border-radius: 12px;
+        outline: solid black 1px;
+        background: map-get($colors, light-gray);
+    }
+
+    .xp-bar {
+        width: 50%;
+        height: 100%;
+        justify-content: flex-start;
+        background-color: map-get($colors, pastel-green);
+        border-radius: 12px;
+    }
+
+    .hamburger-button {
+        background-color: map-get($colors, yellow);
+        color: darkgray;
     }
 }

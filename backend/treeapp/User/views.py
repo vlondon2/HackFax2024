@@ -41,7 +41,6 @@ taskList = [
         'description': 'Recycle something today.',
         'xp': 3
     },
-
     {
         'name': 'carpool',
         'description': 'Carpool with a friend.',

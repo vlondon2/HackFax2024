@@ -1,10 +1,37 @@
-<div class="home-container">
-    <div class="header-items">
-    </div>
+<mat-drawer-container class="page-container">
+    <mat-drawer #drawer class="nav-drawer">
+        <navigation (toggleNav)="toggleNav()">
+        </navigation>
+    </mat-drawer>
+    <mat-drawer-content class="page-content-container">
+        <div class="header-items">
+            <button class="hamburger-button" mat-fab (click)="toggleNav()">
+                <mat-icon>
+                    menu
+                </mat-icon>
+            </button>
+            <div class="user-name-frame title-frame">
+                <span class="user-name-title section-title-text">
+                    {{getUsername()}}
+                </span>
+            </div>
 
-    <div class="body-items">
-    </div>
+        </div>
 
-    <div class="footer-items">
-    </div>
-</div>
+        <div class="body-items">
+
+            <div class="tree-image-container">
+                <img class="tree-image" [src]="getTree()">
+            </div>
+        </div>
+
+        <div class="footer-items">
+            <div class="xp-bar-background">
+                <div class="xp-bar" [ngStyle]="getUserXPBarStyle()">
+                </div>
+            </div>
+        </div>
+    </mat-drawer-content>
+
+
+</mat-drawer-container>

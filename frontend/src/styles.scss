@@ -22,6 +22,15 @@ body {
 }
 
 
+.title-frame {
+    flex-grow: 1;
+    display: flex;
+    height: 80%;
+    margin: 0 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
 
 .dense-small-4 {
     @include mat.all-component-densities(-4);
@@ -37,4 +46,25 @@ body {
     height: 450px;
     width: 300px;
 
+}
+
+.page-content-container {
+    background-color: map-get($colors, blue);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-container {
+    height: 100%;
+}
+
+.header-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    height: 10%;
 }
