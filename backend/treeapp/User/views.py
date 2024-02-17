@@ -37,67 +37,67 @@ cosmeticsMap = {
 
 taskList = [
     {
-        'name': 'recycle',
+        'name': 'Recycle',
         'description': 'Recycle something today.',
         'xp': 3
     },
     {
-        'name': 'carpool',
+        'name': 'Carpool',
         'description': 'Carpool with a friend.',
         'xp': 6
     },
 
     {
-        'name': 'litter',
-        'description': 'Pick up a piece of litter',
+        'name': 'Pick up litter',
+        'description': 'Pick up a piece of litter.',
         'xp': 5
     },
 
     {
-        'name': 'reuse bag',
+        'name': 'Reusable Bag',
         'description': 'Use a reusable bag instead of a plastic bag.',
         'xp': 2
     },
 
     {
-        'name': 'shower',
+        'name': 'Short shower',
         'description': 'Take a 10 minute shower.',
         'xp': 3
     },
 
     {
-        'name': 'research',
-        'description': 'Stay informed by reading an article about recent environmental news.',
+        'name': 'Stay Informed',
+        'description': 'Read an article about recent environmental news.',
         'xp': 5
     },
 
     {
-        'name': 'lights',
+        'name': 'Save Electricity',
         'description': 'Make sure all your lights are off before you leave for the day.',
         'xp': 3
     },
 
     {
-        'name': 'tap',
+        'name': 'Save Water',
         'description': 'Turn off the faucet when you brush your teeth.',
         'xp': 2
     },
 
     {
-        'name': 'donate',
-        'description': 'Donate an old item you don\'t use anymore',
+        'name': 'Donate',
+        'description': 'Donate an old item you don\'t use anymore.',
         'xp': 10
     },
 
     {
-        'name': 'bike',
+        'name': 'Bike',
         'description': 'Bike or walk to a destination instead of driving.',
         'xp': 5
     },
 
     {
-        'name': 'bus',
-        'description': 'take the bus instead of driving',
+        'name': 'Bus',
+        'description': 'take the bus instead of driving.',
         'xp': 5
     }
 
@@ -229,8 +229,10 @@ def completeTask(request):
     # Check if leveled up
     if user.xp >= user.lvlxp:
         user.level += 1
+        user.xp -= user.lvlxp
         user.lvlxp = user.level*10
         user.gold += 5
+
 
 
     user.save()
