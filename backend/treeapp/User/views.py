@@ -36,6 +36,7 @@ def createUser(request):
             level=1,
             xp=0,
             lvlxp=10,
+            cosmetics = {},
             gold=0,
             achievements=""
         )
@@ -66,7 +67,6 @@ def createDevUser(request):
             xp = int(data['xp']),
             lvlxp = int(data['lvlxp']),
             gold = int(data['gold']),
-            cosmetics = data['cosmetics'],
             tasks = data['tasks'],
             achievements = data['achievements']
         )
@@ -86,10 +86,10 @@ def getUser(request):
             raise ValueError
 
         paths = []
-        cosmetics = separate(user.cosmetics)
+        # cosmetics = separate(user.cosmetics)
 
-        for i in range(len(cosmetics)):
-            paths.append(cosmeticsMap[cosmetics[i]])
+        # for i in range(len(cosmetics)):
+        #     paths.append(cosmeticsMap[cosmetics[i]])
 
         
 
