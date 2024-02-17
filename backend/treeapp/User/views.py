@@ -37,7 +37,6 @@ def createUser(request):
             xp=0,
             lvlxp=10,
             gold=0,
-            day=0,
             achievements=""
         )
 
@@ -67,7 +66,6 @@ def createDevUser(request):
             xp = int(data['xp']),
             lvlxp = int(data['lvlxp']),
             gold = int(data['gold']),
-            day = int(data['day']),
             cosmetics = data['cosmetics'],
             tasks = data['tasks'],
             achievements = data['achievements']
