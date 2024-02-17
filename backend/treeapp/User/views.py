@@ -190,7 +190,11 @@ def getUser(request):
 
 
 def join(array):
-    return ','.join(array)
+    if isinstance(array[0], int):
+        return ','.join(str(num) for num in array)
+    else:
+        return ','.join(array)
+    
     
 def split(array):
     return array.split(",")
