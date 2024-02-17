@@ -221,11 +221,14 @@ def completeTask(request):
     else:
         user.tasks = ""
 
-    # Get xp
-    for task in taskList:
-        if task['name'] == data['taskName']:
-            user.xp += task['xp']
+    remainingTasks = []
+    for name in userTasks:
+        remainingTasks.append(findTask(name))
 
+    # Get xp
+    removedTask = findTask(data['taskName'])
+
+    user.xp += removedTask['xp']
     # Check if leveled up
     if user.xp >= user.lvlxp:
         user.level += 1
@@ -234,16 +237,23 @@ def completeTask(request):
         user.gold += 5
 
 
-
     user.save()
     
     return JsonResponse({
-        "removed": data['taskName'],
-        "tasks": userTasks,
+        "removed": removedTask,
+        "tasks": remainingTasks,
         "xp": user.xp,
         "level": user.level,
         "lvlxp": user.lvlxp
     })
+
+def findTask(name):
+    for task in taskList:
+        if task['name'] == name:
+            return task
+    
+    return None
+
 
 @csrf_exempt
 def buyCosmetic(request):
