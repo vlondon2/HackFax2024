@@ -1,6 +1,8 @@
 @use '@angular/material' as mat;
 @import 'app/colors.scss';
 
+$pastel-green: map-get($colors, pastel-green);
+
 /* You can add global styles to this file, and also import other style files */
 body {
     height: 100vh;
@@ -14,6 +16,8 @@ body {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
+
+
 .dense-small-4 {
     @include mat.all-component-densities(-4);
 }
@@ -22,4 +26,11 @@ body {
 
 html {
     height: 100%;
+}
+
+.create-account-dialog .mat-mdc-dialog-container {
+    --mdc-dialog-container-shape: 12px;
+    height: 450px;
+    width: 300px;
+
 }
