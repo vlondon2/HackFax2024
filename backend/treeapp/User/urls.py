@@ -8,5 +8,6 @@ urlpatterns = [
     path("completeTask", views.completeTask, name="completeTask"),
     path("createDev", views.createDevUser, name="createDevUser"),
     path("buy", views.buyCosmetic, name="buyCosmetic"),
-    path("getShop", views.getAllCosmetics, name="getAllCosmetics")
+    path("getShop", views.getAllCosmetics, name="getAllCosmetics"),
+    path("achievements", views.getAchievements, name="getAchievements")
 ]

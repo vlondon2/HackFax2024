@@ -377,6 +377,31 @@ def getAllCosmetics(request):
         'cosmetics': allCosmetics
     })
 
+@csrf_exempt
+def getAchievements(request):
+    user = User.objects.get(id=request.GET.get('id'))
+
+    status = {
+        "Newbie":user.newbie,
+        "Bronze":user.bronzeMedal,
+        "Silver":user.SilverMedal,
+        "Gold":user.GoldMedal,
+        "High Roller":user.highRoller 
+    }
+
+    output = []
+    for achievement in achievementsMap:
+        output.append({
+            "name": achievementsMap[achievement]['name'],
+            "description": achievementsMap[achievement]['description'],
+            "completed": status[achievement],
+        })
+
+    return JsonResponse({
+        "achievements": output
+    })
+
+
 
 
     
