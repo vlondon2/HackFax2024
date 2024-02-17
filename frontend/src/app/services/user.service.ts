@@ -1,12 +1,20 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User_Create_Response_POST } from '../API types/user';
+import { User, User_Create_Response_POST } from '../API types/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
+  private _user?: User;
+  get user(): User | undefined{
+    return this._user;
+  }
+  set user(newUser: User){
+    this._user = newUser;
+  }
 
   private readonly _url: string = 'http://localhost:8000/user';
   private readonly _headers: HttpHeaders = new HttpHeaders({
@@ -14,7 +22,6 @@ export class UserService {
   });
 
   constructor(@Inject(HttpClient) private _httpClient: HttpClient) { 
-
   }
 
   public createUser(username: string, password: string): Observable<User_Create_Response_POST>

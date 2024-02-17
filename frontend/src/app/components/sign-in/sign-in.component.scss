@@ -82,10 +82,18 @@
         justify-content: space-between;
     }
 
+    .logo-image-container {
+        width: 150px;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
     .logo-image {
-        height: 100px;
-        width: 100px;
-        background-image: url('../../../assets/FullTreeAndLandImage.png');
+        width: 100%;
+        height: auto;
     }
 
 }

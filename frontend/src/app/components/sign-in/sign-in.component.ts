@@ -57,7 +57,21 @@ export class SignInComponent {
   }
 
   public signIn(user: User_Create_Response_POST): void {
-    console.log(user);
+
+    if(user)
+    {
+      this._userService.user = {
+          id: user.id,
+          username: user.username,
+          level: 1,
+          cosmetics: [],
+          xp: 0,
+          lvlxp: 10,
+          tasks: [],
+          gold: 0
+      }
+
+    }
   }
 
 }
