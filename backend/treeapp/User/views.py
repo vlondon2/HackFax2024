@@ -150,7 +150,6 @@ def createDevUser(request):
             lvlxp = int(data['lvlxp']),
             gold = int(data['gold']),
             tasks = data['tasks'],
-            achievements = data['achievements'],
             cosmetics = data['cosmetics']
         )
     except ValueError:
@@ -241,6 +240,7 @@ def buyCosmetic(request):
     user.save()
 
     JsonResponse({
+        "username"
         "itemName": newItem['name'],
         "inventory": userCosmetics
     })
