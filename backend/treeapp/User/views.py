@@ -34,6 +34,7 @@ def createUser(request):
             'cosmeticPaths':[],
             'tasks': []
         })
+    
     except Exception as e:
         return JsonResponse({"Message": str(e)}, status=400)
     
@@ -42,23 +43,28 @@ def getUser(request):
     try:
         data = json.loads(request.body)
 
-        user = User.objects.get(id=data['id'])
+        user = User.objects.get(username=data['username'])
 
-        paths = []
-        cosmetics = separate(user.cosmetics)
+        if data['password'] != user.password:
+            raise ValueError
 
-        while len(cosmetics) != 0:
-            paths.append()
+        # paths = []
+        # cosmetics = separate(user.cosmetics)
+
+        # while len(cosmetics) != 0:
+        #     paths.append()
 
         return JsonResponse({
             'id': user.id,
             'username':user.username,
             'level': user.level,
-            'cosmeticPaths': paths,
-            'tasks': user.getTasks
+            # 'cosmeticPaths': paths,
+            'tasks': []
         })
     except User.DoesNotExist:
-        return JsonResponse({"Message": "User does not exist."}, status=404)
+        return JsonResponse({"Message": "User not found."}, status=404)
+    except ValueError as e:
+        return JsonResponse({"Message": "Incorrect Password"}, status=401)
     except Exception as e:
         return JsonResponse({"Message": str(e)}, status=400)
 
