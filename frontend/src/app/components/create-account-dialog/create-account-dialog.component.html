@@ -1,1 +1,37 @@
-<p>create-account-dialog works!</p>
+<div class="create-account-dialog">
+
+    <div mat-dialog-title class="create-account-dialog-header-container">
+        <span class="create-account-dialog-header-text section-title-text">
+            Create Account
+        </span>
+    </div>
+    <mat-dialog-content class="create-account-dialog-content">
+
+        <mat-form-field class="dense-small-4 input-container" appearance="outline">
+            <mat-label class="input-label">Username</mat-label>
+            <input matInput class="input" type="text" [(ngModel)]="username">
+        </mat-form-field>
+
+        <mat-form-field class="dense-small-4 input-container" appearance="outline">
+            <mat-label class="input-label">Password</mat-label>
+            <input matInput class="input" type="password" [(ngModel)]="password">
+        </mat-form-field>
+
+        <mat-form-field class="dense-small-4 input-container" appearance="outline">
+            <mat-label class="input-label">Confirm Password</mat-label>
+            <input matInput class="input" type="password" [(ngModel)]="confirmPassword">
+        </mat-form-field>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="create-account-dialog-actions-container">
+        <button mat-button class="action-button cancel" (click)="close()">
+            Cancel
+        </button>
+
+        <button mat-button [disabled]="!validUsernamePassword" class="action-button" (click)="createAccount()">
+            Create Account
+        </button>
+    </mat-dialog-actions>
+
+</div>

@@ -1,0 +1,64 @@
+@import '../../colors.scss';
+
+:host {
+
+    .create-account-dialog {
+        display: flex;
+        flex-direction: column;
+        background-color: map-get($colors, pastel-green);
+        height: 100%;
+        border-radius: 12px;
+        border: 1px solid map-get($colors, green);
+    }
+
+    .create-account-dialog-header-container {
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        align-items: center;
+        margin: 25px 0;
+    }
+
+    .create-account-dialog-header-text {
+        color: white;
+        font-size: 2.0rem !important;
+    }
+
+    .create-account-dialog-content {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .input-container {
+        width: 90%;
+        margin-top: 20px;
+        height: 40px;
+        background-color: map-get($colors, light-gray);
+    }
+
+    .input-label {
+        color: black;
+        font-weight: 100;
+    }
+
+    .create-account-dialog-actions-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .action-button {
+        background: map-get($colors, pastel-yellow);
+        transition: cubic-bezier(0.075, 0.82, 0.165, 1) background-color;
+        margin: 10px;
+    }
+
+    .cancel:hover {
+        transition: cubic-bezier(0.075, 0.82, 0.165, 1) background-color;
+        background-color: map-get($colors, red);
+    }
+
+}
