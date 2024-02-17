@@ -1,7 +1,7 @@
 venv
 backend/treeapp/treeapp/__pycache__
 backend/treeapp/User/__pycache__
-backend/treeap/User/migrations
+backend/treeapp/User/migrations/__pycache__
 backend/treeapp/db.sqlite3
 frontend/node_modules
 frontend/.angular
