@@ -52,12 +52,12 @@
         height: 40px;
         width: 90%;
         margin-top: 20px;
-        background-color: map-get($colors, blue);
+        background-color: map-get($colors, light-gray);
     }
 
     .username-input-label,
     .password-input-label {
-        color: white;
+        color: black;
         font-weight: 100;
 
     }
@@ -72,7 +72,7 @@
 
     .create-account-button,
     .sign-in-button {
-        background: map-get($colors, blue);
+        background: map-get($colors, pastel-yellow);
         margin: 10px;
     }
 
