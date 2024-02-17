@@ -24,7 +24,7 @@ cosmeticsMap = {
 
     'LampPost': {
         'name': 'LampPost',
-        'price': 10,
+        'price': 25,
         'path': 'assets/LampPost.png'
     },
 
@@ -37,69 +37,69 @@ cosmeticsMap = {
 
 taskList = [
     {
-        'name': 'task0',
-        'description': 'do some shit',
+        'name': 'recycle',
+        'description': 'Recycle something today.',
         'xp': 3
     },
 
     {
-        'name': 'task1',
-        'description': 'do some shit?',
+        'name': 'carpool',
+        'description': 'Carpool with a friend.',
+        'xp': 6
+    },
+
+    {
+        'name': 'litter',
+        'description': 'Pick up a piece of litter',
+        'xp': 5
+    },
+
+    {
+        'name': 'reuse bag',
+        'description': 'Use a reusable bag instead of a plastic bag.',
+        'xp': 2
+    },
+
+    {
+        'name': 'shower',
+        'description': 'Take a 10 minute shower.',
         'xp': 3
     },
 
     {
-        'name': 'task2',
-        'description': 'do some more shit',
+        'name': 'research',
+        'description': 'Stay informed by reading an article about recent environmental news.',
+        'xp': 5
+    },
+
+    {
+        'name': 'lights',
+        'description': 'Make sure all your lights are off before you leave for the day.',
         'xp': 3
     },
 
     {
-        'name': 'task3',
-        'description': 'do some shit 3',
-        'xp': 3
+        'name': 'tap',
+        'description': 'Turn off the faucet when you brush your teeth.',
+        'xp': 2
     },
 
     {
-        'name': 'task4',
-        'description': 'do some shit 4',
-        'xp': 3
+        'name': 'donate',
+        'description': 'Donate an old item you don\'t use anymore',
+        'xp': 10
     },
 
     {
-        'name': 'task5',
-        'description': 'do some shit 5',
-        'xp': 3
+        'name': 'bike',
+        'description': 'Bike or walk to a destination instead of driving.',
+        'xp': 5
     },
 
     {
-        'name': 'task6',
-        'description': 'do some shit 6',
-        'xp': 3
-    },
-
-    {
-        'name': 'task7',
-        'description': 'do some shit 7',
-        'xp': 3
-    },
-
-    {
-        'name': 'task8',
-        'description': 'do some shit 8',
-        'xp': 3
-    },
-
-    {
-        'name': 'task9',
-        'description': 'do some shit 9',
-        'xp': 3
-    },
-
-    {
-        'name': 'task10',
-        'description': 'do some shit 10',
-        'xp': 3
+        'name': 'bus',
+        'description': 'take the bus instead of driving',
+        'xp': 5
     }
 
 ]
@@ -222,11 +222,26 @@ def completeTask(request):
     else:
         user.tasks = ""
 
+    # Get xp
+    for task in taskList:
+        if task['name'] == data['taskName']:
+            user.xp += task['xp']
+
+    # Check if leveled up
+    if user.xp >= user.lvlxp:
+        user.level += 1
+        user.lvlxp = user.level*10
+        user.gold += 5
+
+
     user.save()
     
     return JsonResponse({
         "removed": data['taskName'],
-        "tasks": userTasks
+        "tasks": userTasks,
+        "xp": user.xp,
+        "level": user.level,
+        "lvlxp": user.lvlxp
     })
 
 @csrf_exempt
@@ -234,18 +249,16 @@ def buyCosmetic(request):
     # Getting sent: id, item name
     data = json.loads(request.body)
     user = User.objects.get(id=data['id'])
+
     userCosmetics = split(user.cosmetics)
-
-    newItem = cosmeticsMap[data.itemName]
-    userCosmetics.append(newItem['name'])
-
+    userCosmetics.append(data['itemName'])
     user.cosmetics = join(userCosmetics)
 
     user.save()
 
     JsonResponse({
         "username"
-        "itemName": newItem['name'],
+        "itemName": data['itemName'],
         "inventory": userCosmetics
     })
 
