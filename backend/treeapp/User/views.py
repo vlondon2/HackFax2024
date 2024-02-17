@@ -10,77 +10,96 @@ from .models import User
 # Create your views here.
 
 cosmeticsMap = {
-    'item1': {
-        'name': 'item1',
-        'price': 10,
-        'path': 'path/to/item'
+    'Bench': {
+        'name': 'Bench',
+        'price': 20,
+        'path': 'assets/Bench.png'
     },
-    'item2': {
-        'name': 'item2',
-        'price': 200,
-        'path': 'path/to/item2'
+
+    'Book': {
+        'name': 'Book',
+        'price': 5,
+        'path': 'assets/Bench.png'
+    },
+
+    'LampPost': {
+        'name': 'LampPost',
+        'price': 10,
+        'path': 'assets/LampPost.png'
+    },
+
+    'Lantern': {
+        'name': 'Lantern',
+        'price': 10,
+        'path': 'assets/LanternVer2.png'
     }
 }
 
 taskList = [
     {
+        'name': 'task0',
+        'description': 'do some shit',
+        'xp': 3
+    },
+
+    {
         'name': 'task1',
         'description': 'do some shit?',
-        'xp': 25
+        'xp': 3
     },
 
     {
         'name': 'task2',
         'description': 'do some more shit',
-        'xp': 25
+        'xp': 3
     },
 
     {
         'name': 'task3',
         'description': 'do some shit 3',
-        'xp': 25
+        'xp': 3
     },
 
     {
         'name': 'task4',
         'description': 'do some shit 4',
-        'xp': 25
+        'xp': 3
     },
 
     {
         'name': 'task5',
         'description': 'do some shit 5',
-        'xp': 25
+        'xp': 3
     },
 
     {
         'name': 'task6',
         'description': 'do some shit 6',
-        'xp': 25
+        'xp': 3
     },
 
     {
         'name': 'task7',
         'description': 'do some shit 7',
-        'xp': 25
+        'xp': 3
     },
 
     {
         'name': 'task8',
         'description': 'do some shit 8',
-        'xp': 25
+        'xp': 3
     },
 
     {
         'name': 'task9',
         'description': 'do some shit 9',
-        'xp': 25
+        'xp': 3
     },
 
     {
         'name': 'task10',
         'description': 'do some shit 10',
-        'xp': 25
+        'xp': 3
     }
 
 ]
@@ -207,6 +226,26 @@ def completeTask(request):
         "removed": data['taskName'],
         "tasks": userTasks
     })
+
+@csrf_exempt
+def buyCosmetic(request):
+    # Getting sent: id, item name
+    data = json.loads(request.body)
+    user = User.objects.get(id=data['id'])
+    userCosmetics = split(user.cosmetics)
+
+    newItem = cosmeticsMap[data.itemName]
+    userCosmetics.append(newItem['name'])
+
+    user.cosmetics = join(userCosmetics)
+
+    user.save()
+
+    JsonResponse({
+        "itemName": newItem['name'],
+        "inventory": userCosmetics
+    })
+
     
 
 def join(array):
