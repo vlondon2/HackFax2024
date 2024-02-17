@@ -1,0 +1,87 @@
+@import '../../colors.scss';
+
+
+:host {
+
+
+    .username-input-container {}
+
+    .sign-in-container {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background-color: map-get($colors, blue);
+    }
+
+    .sign-in-card {
+        height: 450px;
+        width: 300px;
+        background-color: map-get($colors, pastel-green);
+        border-radius: 12px;
+        border: 1px solid map-get($colors, green);
+    }
+
+    .sign-in-card-title {
+
+        height: 10%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 25px 0;
+    }
+
+    .sign-in-card-title-text {
+        color: white;
+
+    }
+
+    .sign-in-card-content {
+        flex-grow: 1;
+        flex-direction: column;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .username-input-container,
+    .password-input-container {
+        height: 40px;
+        width: 90%;
+        margin-top: 20px;
+        background-color: map-get($colors, blue);
+    }
+
+    .username-input-label,
+    .password-input-label {
+        color: white;
+        font-weight: 100;
+
+    }
+
+    .create-account-button {
+        flex-grow: 1;
+    }
+
+    .sign-in-button {
+        width: 100px;
+    }
+
+    .create-account-button,
+    .sign-in-button {
+        background: map-get($colors, blue);
+        margin: 10px;
+    }
+
+    .sign-in-card-actions {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+
+
+}
