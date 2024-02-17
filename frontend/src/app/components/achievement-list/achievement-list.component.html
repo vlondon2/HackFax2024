@@ -1,0 +1,30 @@
+<mat-drawer-container class="page-container">
+    <mat-drawer #drawer class="nav-drawer">
+        <navigation (toggleNav)="toggleNav()">
+        </navigation>
+    </mat-drawer>
+    <mat-drawer-content class="page-content-container">
+        <div class="header-items">
+            <button class="hamburger-button" mat-fab (click)="toggleNav()">
+                <mat-icon>
+                    menu
+                </mat-icon>
+            </button>
+            <div class="achievement-title-frame title-frame">
+                <span class="achievement-title section-title-text">
+                    {{getUsername()}}
+                </span>
+            </div>
+
+        </div>
+
+        <div class="body-items">
+
+
+        </div>
+
+
+    </mat-drawer-content>
+
+
+</mat-drawer-container>
