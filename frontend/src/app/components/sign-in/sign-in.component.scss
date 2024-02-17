@@ -4,7 +4,7 @@
 :host {
 
 
-  
+
 
     .sign-in-container {
 
@@ -82,6 +82,10 @@
         justify-content: space-between;
     }
 
-
+    .logo-image {
+        height: 100px;
+        width: 100px;
+        background-image: url('../../../assets/FullTreeAndLandImage.png');
+    }
 
 }
