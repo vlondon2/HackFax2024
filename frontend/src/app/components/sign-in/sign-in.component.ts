@@ -36,4 +36,15 @@ export class SignInComponent {
   {
     
   }
+
+  public createAccount(){
+
+    this._userService.createUser("Dom", "123").subscribe(response => {
+      console.log("Response: ", response);
+    },
+    error => {
+      console.error("Error! ", error);
+    })
+  }
+
 }
