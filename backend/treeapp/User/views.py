@@ -156,10 +156,12 @@ def createDevUser(request):
             tasks = data['tasks'],
             cosmetics = data['cosmetics']
         )
+
+        return JsonResponse({})
     except ValueError:
-        JsonResponse({"error": "User already exists"}, status=400)
+        return JsonResponse({"error": "User already exists"}, status=400)
     except Exception as e:
-        JsonResponse({"error": str(e)}, status=400)
+        return JsonResponse({"error": str(e)}, status=400)
     
 @csrf_exempt
 def getUser(request):
@@ -248,7 +250,8 @@ def completeTask(request):
         "tasks": remainingTasks,
         "xp": user.xp,
         "level": user.level,
-        "lvlxp": user.lvlxp
+        "lvlxp": user.lvlxp,
+        "gold": user.gold
     })
 
 
