@@ -7,7 +7,12 @@ $pastel-green: map-get($colors, pastel-green);
 body {
     height: 100vh;
     width: 100vw;
+    overflow: hidden;
     margin: 0;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 .section-title-text {
@@ -24,9 +29,8 @@ body {
 
 
 
-html {
-    height: 100%;
-}
+
+
 
 .create-account-dialog .mat-mdc-dialog-container {
     --mdc-dialog-container-shape: 12px;

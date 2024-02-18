@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateAccountDialogComponent } from '../create-account-dialog/create-account-dialog.component';
-import { User_Create_Response_POST } from 'src/app/API types/user';
+import { User_Create_Response_POST, User_Get_Response_GET } from 'src/app/API types/user';
 
 
 @Component({
@@ -36,9 +36,14 @@ import { User_Create_Response_POST } from 'src/app/API types/user';
 })
 export class SignInComponent {
 
+  public username;
+  public password;
+
   constructor(@Inject(UserService) private _userService: UserService,
               @Inject(MatDialog) private _dialogService: MatDialog)
   {
+    this.username = "";
+    this.password = "";
   }
 
   public createAccount(){
@@ -51,12 +56,31 @@ export class SignInComponent {
     dialogRef.afterClosed().subscribe((closingValue) => {
       if(closingValue)
       {
-        this.signIn(closingValue);
+        this.signInNewUser(closingValue);
       }
     })
   }
 
-  public signIn(user: User_Create_Response_POST): void {
+  public signIn()
+  {
+    this._userService.getUser(this.username, this.password).subscribe(user => {
+      this._userService.user = {
+        id: user.id,
+        username: user.username,
+        level: user.level,
+        cosmetics: user.cosmetics,
+        xp: user.xp,
+        lvlxp: user.lvlxp,
+        gold: user.gold,
+        tasks: user.tasks
+      }
+    },
+    error => {
+      console.log("There was an error!", error);
+    })
+  }
+
+  public signInNewUser(user: User_Create_Response_POST): void {
 
     if(user)
     {
