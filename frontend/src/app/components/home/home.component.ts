@@ -2,11 +2,12 @@ import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/API types/user';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
@@ -23,9 +24,17 @@ export class HomeComponent {
     switch(this.user?.level)
     {
       case 1:
-        src='assets/'
-        
+        src='assets/TreeSaplingAndLand.png'
+        break;
+      case 2:
+        src='assets/MediumTree.png'
+        break;
+      case 3:
+        src='assets/FullTreeAndLandImage.png'
+        break;
     }
+
+    return src;
   }
 
 

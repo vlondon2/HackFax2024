@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateAccountDialogComponent } from '../create-account-dialog/create-account-dialog.component';
 import { User_Create_Response_POST, User_Get_Response_GET } from 'src/app/API types/user';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -29,7 +30,7 @@ import { User_Create_Response_POST, User_Get_Response_GET } from 'src/app/API ty
     FormsModule,
     MatHint,
     MatCardActions,
-    CreateAccountDialogComponent
+    CreateAccountDialogComponent,
   ],
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
@@ -40,7 +41,8 @@ export class SignInComponent {
   public password;
 
   constructor(@Inject(UserService) private _userService: UserService,
-              @Inject(MatDialog) private _dialogService: MatDialog)
+              @Inject(MatDialog) private _dialogService: MatDialog,
+              @Inject(Router) private _router: Router)
   {
     this.username = "";
     this.password = "";
@@ -74,6 +76,7 @@ export class SignInComponent {
         gold: user.gold,
         tasks: user.tasks
       }
+      this._loadHomePage();
     },
     error => {
       console.log("There was an error!", error);
@@ -95,7 +98,12 @@ export class SignInComponent {
           gold: 0
       }
 
+      this._loadHomePage();
     }
+  }
+
+  private _loadHomePage(): void{
+    this._router.navigate(['/home']);
   }
 
 }

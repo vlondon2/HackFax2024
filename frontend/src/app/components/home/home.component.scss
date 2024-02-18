@@ -12,7 +12,7 @@
     .header-items {
         display: flex;
         flex-direction: row;
-        height: 15%;
+        height: 10%;
     }
 
     .body-items {
@@ -22,8 +22,19 @@
         flex-grow: 1;
     }
 
+    .tree-image-container {
+        display: flex;
+        width: 250px;
+
+    }
+
+    .tree-image {
+        width: 100%;
+        height: auto;
+    }
+
     .footer-items {
         display: flex;
-        height: 10%;
+        height: 15%;
     }
 }
