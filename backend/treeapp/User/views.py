@@ -10,15 +10,28 @@ from .models import User
 # Create your views here.
 
 cosmeticsMap = {
-    'item1': {
-        'name': 'item1',
-        'price': 10,
-        'path': 'path/to/item'
+    'Bench': {
+        'name': 'Bench',
+        'price': 20,
+        'path': 'assets/Bench.png'
     },
-    'item2': {
-        'name': 'item2',
-        'price': 200,
-        'path': 'path/to/item2'
+
+    'Book': {
+        'name': 'Book',
+        'price': 5,
+        'path': 'assets/Bench.png'
+    },
+
+    'LampPost': {
+        'name': 'LampPost',
+        'price': 10,
+        'path': 'assets/LampPost.png'
+    },
+
+    'Lantern': {
+        'name': 'Lantern',
+        'price': 10,
+        'path': 'assets/LanternVer2.png'
     }
 }
 
@@ -28,7 +41,6 @@ taskList = [
         'description': 'do some shit',
         'xp': 3
     },
-    
     {
         'name': 'task1',
         'description': 'do some shit?',
@@ -213,6 +225,26 @@ def completeTask(request):
         "removed": data['taskName'],
         "tasks": userTasks
     })
+
+@csrf_exempt
+def buyCosmetic(request):
+    # Getting sent: id, item name
+    data = json.loads(request.body)
+    user = User.objects.get(id=data['id'])
+    userCosmetics = split(user.cosmetics)
+
+    newItem = cosmeticsMap[data.itemName]
+    userCosmetics.append(newItem['name'])
+
+    user.cosmetics = join(userCosmetics)
+
+    user.save()
+
+    JsonResponse({
+        "itemName": newItem['name'],
+        "inventory": userCosmetics
+    })
+
     
 
 def join(array):
