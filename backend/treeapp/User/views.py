@@ -329,7 +329,8 @@ def buyCosmetic(request):
 
     owned = []
     for name in userCosmetics:
-        owned.append(cosmeticsMap[name])
+        if name:
+            owned.append(cosmeticsMap[name])
 
     if not user.highRoller and len(userCosmetics) >= 4:
         user.highRoller = True
