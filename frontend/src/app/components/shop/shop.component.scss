@@ -33,8 +33,48 @@
     }
 
     .shop-item {
-        background-color: red;
+        background-color: map-get($colors, pastel-brown);
         height: 20%;
+        width: 80%;
+        border-radius: 12px;
+        margin-top: 20px;
+
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+    }
+
+    .preview-image-container {
+        height: 40px;
+        width: 40px;
+
+        margin-left: 20px;
+        display: flex;
+        align-items: center;
+
+    }
+
+    .cosmetic-title {
+        font-size: large;
+        font-weight: bold;
+        margin-left: 20px;
+        flex-grow: 1;
+    }
+
+    .preview-image {
         width: 100%;
+        height: auto;
+    }
+
+    .buy-button {
+
+        background-color: map-get($colors, pastel-yellow);
+    }
+
+    .button-container {
+        flex-grow: 1;
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 20px;
     }
 }

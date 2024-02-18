@@ -26,7 +26,9 @@ export class ShopComponent implements OnInit{
 
   public ngOnInit(): void {
     this._userService.getShop().subscribe((response) => {
-      this.cosmetics = response.availableCosmetics;
+      console.log("Response", response);
+      this.cosmetics = response.cosmetics;
+      console.log("Cosmetics", this.cosmetics)
     })
   }
   public toggleNav(): void {

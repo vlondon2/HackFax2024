@@ -31,12 +31,12 @@ export interface User_CompleteTask_Response_PATCH
 
 export interface User_GetShop_Response_PATCH
 {
-    availableCosmetics: Cosmetic[];
+    cosmetics: Cosmetic[];
 }
 
 export interface Cosmetic{
     name: string,
-    price: 10,
+    price: number,
     path: string,
     requiredlvl: number
 }
