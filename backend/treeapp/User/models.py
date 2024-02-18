@@ -14,9 +14,9 @@ class User(models.Model):
     tasks = models.CharField(max_length=1000, default='')
     taskCount = models.IntegerField(default=0)
     newbie = models.BooleanField(default=False)
-    bronze = models.BooleanField(default=False)
-    silver = models.BooleanField(default=False)
-    gold = models.BooleanField(default=False)
+    bronzeMedal = models.BooleanField(default=False)
+    silverMedal = models.BooleanField(default=False)
+    goldMedal = models.BooleanField(default=False)
     highRoller = models.BooleanField(default=False)
 
 

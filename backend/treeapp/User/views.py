@@ -270,16 +270,18 @@ def completeTask(request):
         user.tasks = join(userTasks)
     else:
         user.tasks = ""
-
+    print("userTasks: ", userTasks)
     remainingTasks = []
     for i in userTasks:
         remainingTasks.append(taskList[int(i)])
 
+    print("remainingTasks: ", remainingTasks)
+
     for task in taskList:
         if task['name'] == data['taskName']:
             removedTask = task
+            user.xp += removedTask['xp']
 
-    user.xp += removedTask['xp']
     # Check if leveled up
     if user.xp >= user.lvlxp:
         user.level += 1
@@ -290,6 +292,17 @@ def completeTask(request):
     if not user.newbie:
         user.newbie = True
         user.gold += 5
+
+    user.taskCount += 1
+
+    if not user.bronzeMedal and user.taskCount >= 5:
+        user.bronze = True
+    
+    if not user.silverMedal and user.taskCount >= 10:
+        user.silver = True
+    
+    if not user.goldMedal and user.taskCount >= 20:
+        user.gold = True
 
     user.save()
     
@@ -317,6 +330,9 @@ def buyCosmetic(request):
     owned = []
     for name in userCosmetics:
         owned.append(cosmeticsMap[name])
+
+    if not user.highRoller and len(userCosmetics) >= 4:
+        user.highRoller = True
 
 
     return JsonResponse({
