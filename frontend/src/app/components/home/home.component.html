@@ -1,14 +1,34 @@
-<div class="home-container">
-    <div class="header-items">
-    </div>
+<mat-drawer-container hasBackDrop="False" class="home-page-container">
+    <mat-drawer #drawer class="nav-drawer">
+        <navigation></navigation>
+    </mat-drawer>
+    <mat-drawer-container class="nav-drawer-container"></mat-drawer-container>
+    <mat-drawer-content class="home-container">
+        <div class="header-items">
+            <button class="hamburger-button" mat-fab (click)="drawer.toggle()">
+                <mat-icon>
+                    menu
+                </mat-icon>
+            </button>
+            <div class="user-name-frame">
+                <span class="user-name-title section-title-text">
+                    {{getUsername()}}
+                </span>
+            </div>
 
-    <div class="body-items">
-
-        <div class="tree-image-container">
-            <img class="tree-image" src="assets/TreeSaplingAndLand.png">
         </div>
-    </div>
 
-    <div class="footer-items">
-    </div>
-</div>
+        <div class="body-items">
+
+            <div class="tree-image-container">
+                <img class="tree-image" [src]="getTree()">
+            </div>
+        </div>
+
+        <div class="footer-items">
+
+        </div>
+    </mat-drawer-content>
+
+
+</mat-drawer-container>

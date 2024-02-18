@@ -12,6 +12,8 @@
     .header-items {
         display: flex;
         flex-direction: row;
+        align-items: center;
+        padding: 10px;
         height: 10%;
     }
 
@@ -36,5 +38,32 @@
     .footer-items {
         display: flex;
         height: 15%;
+    }
+
+    .home-page-container {
+        height: 100%;
+    }
+
+    .hamburger-button {
+        background-color: map-get($colors, yellow);
+        color: darkgray;
+    }
+
+    .user-name-title {
+
+        text-align: center;
+        color: white;
+    }
+
+    .user-name-frame {
+        flex-grow: 1;
+        display: flex;
+        height: 80%;
+        margin: 0 10px;
+        justify-content: center;
+        align-items: center;
+        background-color: map-get($colors, pastel-green);
+        border-radius: 12px;
+        outline: solid 1px map-get($colors, green);
     }
 }
