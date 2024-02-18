@@ -33,14 +33,15 @@ export class TaskBoardComponent implements OnInit{
 
   public completeTask(task: Task): void {
 
-    console.log(task);
+    console.log("Tasks: ", this.tasks);
     this._userService.completeTask(this.user!.id, task.name).subscribe(response => {
-      console.log(response);
+      console.log("Response for task completion: ", response);
       this.tasks = response.tasks;
       this._userService.user!.xp = response.xp;
       this._userService.user!.lvlxp = response.lvlxp;
       this._userService.user!.xp = response.xp;
       this._userService.user!.level = response.level;
+      this._userService.user!.tasks = response.tasks;
     },
     error => {
       console.log("Error! ", error);
