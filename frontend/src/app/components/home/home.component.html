@@ -1,16 +1,16 @@
-<mat-drawer-container hasBackDrop="False" class="home-page-container">
+<mat-drawer-container class="page-container">
     <mat-drawer #drawer class="nav-drawer">
-        <navigation></navigation>
+        <navigation (toggleNav)="toggleNav()">
+        </navigation>
     </mat-drawer>
-    <mat-drawer-container class="nav-drawer-container"></mat-drawer-container>
-    <mat-drawer-content class="home-container">
+    <mat-drawer-content class="page-content-container">
         <div class="header-items">
-            <button class="hamburger-button" mat-fab (click)="drawer.toggle()">
+            <button class="hamburger-button" mat-fab (click)="toggleNav()">
                 <mat-icon>
                     menu
                 </mat-icon>
             </button>
-            <div class="user-name-frame">
+            <div class="user-name-frame title-frame">
                 <span class="user-name-title section-title-text">
                     {{getUsername()}}
                 </span>
@@ -26,7 +26,10 @@
         </div>
 
         <div class="footer-items">
-
+            <div class="xp-bar-background">
+                <div class="xp-bar" [ngStyle]="getUserXPBarStyle()">
+                </div>
+            </div>
         </div>
     </mat-drawer-content>
 

@@ -1,0 +1,80 @@
+@import '../../colors.scss';
+
+:host {
+    .page-content-container {
+        background-color: map-get($colors, peach);
+
+    }
+
+    .tasks-frame {
+        background-color: map-get($colors, warm-red);
+        outline: 1px solid map-get($colors, sun-orange);
+    }
+
+    .hamburger-button {
+        background-color: map-get($colors, warm-red);
+        color: white;
+    }
+
+    .body-items {
+        margin-top: 20px;
+        margin: 20px auto 0px auto;
+        width: 100%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+
+    }
+
+    .task-item {
+        width: 80%;
+        height: 20%;
+        border-radius: 12px;
+        margin-top: 10px;
+        outline: solid 1px map-get($colors, sun-orange);
+        background-color: map-get($colors, warm-red);
+        display: flex;
+        align-items: center;
+
+    }
+
+    .tasks-title-text {
+        color: white;
+    }
+
+    .task-information-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .name-and-details-container {
+        display: flex;
+        height: 100%;
+        width: 78%;
+        flex-direction: column;
+    }
+
+    .task-title {
+        margin-top: 10px;
+        margin-left: 10px;
+        font-weight: bold;
+    }
+
+    .task-description {
+        margin: 0 10px;
+        font-size: 0.7rem;
+        height: 45px;
+        max-width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+
+}

@@ -25,6 +25,19 @@ export class UserService {
     console.log(this.user);
   }
 
+  public signUserOut(): void {
+    this._user = {
+      id: -1,
+      username: '',
+      level: 0,
+      cosmetics: [],
+      xp: 0,
+      lvlxp: -1,
+      tasks: [],
+      gold: 0
+    }
+  }
+
   public createUser(username: string, password: string): Observable<User_Create_Response_POST>
   {
     return this._httpClient.post<User_Create_Response_POST>(`${this._url}/create`, { username: username, password: password }, {headers: this._headers});

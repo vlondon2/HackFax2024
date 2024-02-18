@@ -1,27 +1,15 @@
 @import '../../colors.scss';
 
 :host {
-    .home-container {
-        background-color: map-get($colors, blue);
-        height: 100%;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-    }
 
-    .header-items {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: 10px;
-        height: 10%;
-    }
+
+
 
     .body-items {
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-grow: 1;
+        height: 70%;
     }
 
     .tree-image-container {
@@ -40,14 +28,9 @@
         height: 15%;
     }
 
-    .home-page-container {
-        height: 100%;
-    }
 
-    .hamburger-button {
-        background-color: map-get($colors, yellow);
-        color: darkgray;
-    }
+
+
 
     .user-name-title {
 
@@ -56,14 +39,36 @@
     }
 
     .user-name-frame {
-        flex-grow: 1;
+
+        background-color: map-get($colors, pastel-green);
+        outline: solid 1px map-get($colors, green);
+    }
+
+    .footer-items {
         display: flex;
-        height: 80%;
-        margin: 0 10px;
         justify-content: center;
         align-items: center;
+    }
+
+    .xp-bar-background {
+        width: 70%;
+        height: 20%;
+        display: flex;
+        border-radius: 12px;
+        outline: solid black 1px;
+        background: map-get($colors, light-gray);
+    }
+
+    .xp-bar {
+        width: 50%;
+        height: 100%;
+        justify-content: flex-start;
         background-color: map-get($colors, pastel-green);
         border-radius: 12px;
-        outline: solid 1px map-get($colors, green);
+    }
+
+    .hamburger-button {
+        background-color: map-get($colors, yellow);
+        color: darkgray;
     }
 }
