@@ -7,11 +7,11 @@ import { MatIcon } from '@angular/material/icon';
 import { Cosmetic, User } from 'src/app/API types/user';
 
 @Component({
-  selector: 'task-board',
+  selector: 'shop',
   standalone: true,
   imports: [MatIcon, MatDrawer, MatDrawerContainer, MatDrawerContent, NavigationComponent, MatButtonModule],
-  templateUrl: './task-board.component.html',
-  styleUrl: './task-board.component.scss'
+  templateUrl: './shop.component.html',
+  styleUrl: './shop.component.scss'
 })
 export class ShopComponent implements OnInit{
   public user?: User;
@@ -25,12 +25,9 @@ export class ShopComponent implements OnInit{
   }
 
   public ngOnInit(): void {
-    if(this.user)
-    {
-      this.cosmetics = this.cosmetics.filter(item => {
-        return !this.user?.cosmetics.includes(item);
-      })
-    }
+    this._userService.getShop().subscribe((response) => {
+      this.cosmetics = response.availableCosmetics;
+    })
   }
   public toggleNav(): void {
     console.log("Calling toggleNav!");

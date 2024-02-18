@@ -1,0 +1,40 @@
+@import '../../colors.scss';
+
+:host {
+    .page-content-container {
+        background-color: map-get($colors, silver-gray);
+
+    }
+
+    .shop-frame {
+        background-color: map-get($colors, silver-gray);
+        outline: 1px solid map-get($colors, dark-brown);
+    }
+
+    .shop-title-text {
+        color: map-get($colors, pastel-brown);
+    }
+
+    .hamburger-button {
+        background-color: map-get($colors, dark-brown);
+        color: white;
+    }
+
+    .body-items {
+        margin-top: 20px;
+        margin: 20px auto 0px auto;
+        width: 100%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+
+    }
+
+    .shop-item {
+        background-color: red;
+        height: 20%;
+        width: 100%;
+    }
+}

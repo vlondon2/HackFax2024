@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User, User_CompleteTask_Response_PATCH, User_Create_Response_POST, User_Get_Response_GET } from '../API types/user';
+import { User, User_CompleteTask_Response_PATCH, User_Create_Response_POST, User_GetShop_Response_PATCH, User_Get_Response_GET } from '../API types/user';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +46,11 @@ export class UserService {
   public getUser(username: string, password: string): Observable<User_Get_Response_GET>
   {
     return this._httpClient.get<User_Get_Response_GET>(`${this._url}/get?username=${username}&password=${password}`, {headers: this._headers});
+  }
+
+  public getShop(): Observable<User_GetShop_Response_PATCH>
+  {
+    return this._httpClient.get<User_GetShop_Response_PATCH>(`${this._url}/getShop`, {headers: this._headers});
   }
 
   public completeTask(userid: number, taskName: string): Observable<User_CompleteTask_Response_PATCH>

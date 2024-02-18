@@ -25,13 +25,20 @@ export interface User_CompleteTask_Response_PATCH
     tasks: Task[],
     xp: number,
     level: number,
-    lvlxp: number
+    lvlxp: number,
+    gold: number
+}
+
+export interface User_GetShop_Response_PATCH
+{
+    availableCosmetics: Cosmetic[];
 }
 
 export interface Cosmetic{
     name: string,
     price: 10,
-    path: string
+    path: string,
+    requiredlvl: number
 }
 
 export interface Task{
