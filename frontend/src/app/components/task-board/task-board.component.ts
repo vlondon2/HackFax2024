@@ -42,12 +42,13 @@ export class TaskBoardComponent implements OnInit{
       this._userService.user!.xp = response.xp;
       this._userService.user!.level = response.level;
       this._userService.user!.tasks = response.tasks;
+      this._userService.user!.gold = response.gold;
     },
     error => {
       console.log("Error! ", error);
     })
 
-
+    console.log("USER: ", this._userService.user);
   }
 
   public toggleNav(): void {

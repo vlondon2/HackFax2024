@@ -36,4 +36,11 @@ export class ShopComponent implements OnInit{
     this.drawer?.toggle();
   }
 
+  public userHasEnoughGold(cosmetic: Cosmetic): boolean{
+    if(this.user)
+    {
+      return cosmetic.price > this.user!.gold;
+    }
+    return true;
+  }
 }

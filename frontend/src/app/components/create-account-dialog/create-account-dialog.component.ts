@@ -36,7 +36,6 @@ export class CreateAccountDialogComponent {
 
   public createAccount(): void{
     this._userService.createUser(this.username, this.password).subscribe((response) => {
-      console.log("Successfully created the user!");
       this._dialogRef.close(response);
     },
     error => {
