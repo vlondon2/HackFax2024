@@ -21,7 +21,7 @@ cosmeticsMap = {
         'name': 'Book',
         'price': 5,
         'requiredlvl': 1,
-        'path': 'assets/Bench.png'
+        'path': 'assets/Book.png'
     },
 
     'LampPost': {
@@ -157,7 +157,16 @@ def createDevUser(request):
             cosmetics = data['cosmetics']
         )
 
-        return JsonResponse({})
+        return JsonResponse({
+            "username": user.username,
+            "password": user.level,
+            'level': user.level,
+            'xp': user.xp,
+            'lvlxp': user.lvlxp,
+            'gold': user.gold,
+            "tasks": user.tasks,
+            "cosmetics": user.cosmetics
+        })
     except ValueError:
         return JsonResponse({"error": "User already exists"}, status=400)
     except Exception as e:
@@ -264,12 +273,15 @@ def buyCosmetic(request):
     userCosmetics = split(user.cosmetics)
     userCosmetics.append(data['itemName'])
     user.cosmetics = join(userCosmetics)
-
     user.save()
 
+    owned = []
+    for name in userCosmetics:
+        owned.append(cosmeticsMap[name])
+
+
     return JsonResponse({
-        "itemName": data['itemName'],
-        "inventory": userCosmetics
+        "inventory": owned
     })
 
 @csrf_exempt
