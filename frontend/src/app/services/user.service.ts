@@ -33,10 +33,7 @@ export class UserService {
   public getUser(username: string, password: string): Observable<User_Get_Response_GET>
   {
 
-    let params = new HttpParams();
-
-    params.append('username', username);
-    params.append('password', password);
-    return this._httpClient.get<User_Get_Response_GET>(`${this._url}/get`, {headers: this._headers, params: params})
+  
+    return this._httpClient.get<User_Get_Response_GET>(`${this._url}/get?username=${username}&password=${password}`, {headers: this._headers})
   }
 }

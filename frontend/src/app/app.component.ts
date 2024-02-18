@@ -23,24 +23,26 @@ export class AppComponent {
   }
 
   public getStyle() {
-   
-    if(this._userService.user && this._transformPercentage !== 50)
+    console.log("Changing style");
+    console.log("User: ", this._userService.user);
+    console.log("_transformPercentage", this._transformPercentage);
+    if(this._userService.user && this._transformPercentage === 0)
     {
-     
+      console.log("Sliding down");
       this._transformPercentage -= 50;
    
     }
-    else if(!this._userService.user && this._transformPercentage !== 0)
+    else if(!this._userService.user && this._transformPercentage === -50)
     {
-      
+      console.log("Sliding up");
       this._transformPercentage += 50;
-
-
      
     }
 
- 
-    return {transform:  `translateY(${this._transformPercentage}%)` }
+  
+    return {
+              transform:  `translateY(${this._transformPercentage}%)`
+           }
     
     
   }

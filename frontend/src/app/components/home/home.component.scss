@@ -5,5 +5,25 @@
         background-color: map-get($colors, blue);
         height: 100%;
         width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header-items {
+        display: flex;
+        flex-direction: row;
+        height: 15%;
+    }
+
+    .body-items {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+    }
+
+    .footer-items {
+        display: flex;
+        height: 10%;
     }
 }
