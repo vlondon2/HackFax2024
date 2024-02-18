@@ -150,7 +150,6 @@ def createDevUser(request):
             lvlxp = int(data['lvlxp']),
             gold = int(data['gold']),
             tasks = data['tasks'],
-            achievements = data['achievements'],
             cosmetics = data['cosmetics']
         )
     except ValueError:
@@ -217,7 +216,10 @@ def completeTask(request):
     userTasks = split(user.tasks)
 
     userTasks = [index for index in userTasks if taskList[int(index)]['name'] != data['taskName']]
-    user.tasks = join(userTasks)
+    if len(userTasks) != 0:
+        user.tasks = join(userTasks)
+    else:
+        user.tasks = ""
 
     user.save()
     
@@ -241,6 +243,7 @@ def buyCosmetic(request):
     user.save()
 
     JsonResponse({
+        "username"
         "itemName": newItem['name'],
         "inventory": userCosmetics
     })
