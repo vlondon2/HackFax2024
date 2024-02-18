@@ -22,18 +22,35 @@
 
             <div class="tree-image-container">
                 <img class="tree-image" [src]="getTree()">
+
+                @if(hasLamp())
+                {
                 <div class="lamp-image-container">
                     <img class="lamp-image" src="assets/LampPost.png">
                 </div>
+                }
+
+                @if(hasBench())
+                {
                 <div class="bench-image-container">
                     <img class="bench-image" src="assets/Bench.png">
                 </div>
+                }
+
+                @if(hasBook())
+                {
                 <div class="book-image-container">
                     <img class="book-image" src="assets/Book.png">
                 </div>
+                }
+
+                @if(hasLantern())
+                {
                 <div class="lantern-image-container">
                     <img class="lantern-image" src="assets/LanternVer2.png">
                 </div>
+                }
+
             </div>
         </div>
 

@@ -74,4 +74,80 @@ export class HomeComponent {
     }
   }
 
+  public hasLamp(): boolean | undefined {
+    if(!this.user)
+    {
+      return false;
+    }
+
+    let cosmetics = this.user.cosmetics;
+    let hasLamp = false;
+
+    cosmetics.forEach(cosmetic => {
+      if(cosmetic.name === "Lamp Post")
+      {
+       hasLamp = true;
+      }
+    })
+
+    return hasLamp;
+  }
+
+  public hasLantern(): boolean | undefined {
+    if(!this.user)
+    {
+      return false;
+    }
+
+    let cosmetics = this.user.cosmetics;
+    let hasLantern = false;
+
+    cosmetics.forEach(cosmetic => {
+      if(cosmetic.name === "Lantern")
+      {
+        hasLantern = true;
+      }
+    })
+
+    return hasLantern;
+  }
+
+  public hasBench(): boolean {
+    if(!this.user)
+    {
+      return false;
+    }
+
+    let cosmetics = this.user.cosmetics;
+    let hasBench = false;
+
+    cosmetics.forEach(cosmetic => {
+      if(cosmetic.name === "Bench")
+      {
+        hasBench = true;
+      }
+    })
+
+    return hasBench;
+  }
+
+  public hasBook(): boolean | undefined {
+    if(!this.user)
+    {
+      return false;
+    }
+
+    let cosmetics = this.user.cosmetics;
+    let hasBook = false;
+
+    cosmetics.forEach(cosmetic => {
+      if(cosmetic.name === "Book")
+      {
+        hasBook = true;
+      }
+    })
+
+    return hasBook;
+  }
+
 }

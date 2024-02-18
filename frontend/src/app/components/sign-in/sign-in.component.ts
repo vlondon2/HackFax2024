@@ -65,7 +65,12 @@ export class SignInComponent {
 
   public signIn()
   {
+    console.log("Username: ", this.username);
+    console.log("Password: ", this.password);
+
     this._userService.getUser(this.username, this.password).subscribe(user => {
+      
+      console.log("Sign in success! ", user);
       this._userService.user = {
         id: user.id,
         username: user.username,
@@ -79,7 +84,8 @@ export class SignInComponent {
       this._loadHomePage();
     },
     error => {
-      console.log("There was an error!", error);
+      console.log("SIGN IN FAILED! ", error);
+      console.log("CURRENT USER WHEN FAILURE HAPPENED: ", this._userService.user);
     })
   }
 

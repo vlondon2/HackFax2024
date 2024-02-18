@@ -24,7 +24,7 @@ cosmeticsMap = {
         'path': 'assets/Book.png'
     },
 
-    'LampPost': {
+    'Lamp Post': {
         'name': 'Lamp Post',
         'price': 15,
         'requiredlvl': 1,
@@ -101,7 +101,7 @@ taskList = [
 
     {
         'name': 'Bus',
-        'description': 'take the bus instead of driving.',
+        'description': 'Take the bus instead of driving.',
         'xp': 5
     }
 
@@ -212,19 +212,27 @@ def createDevUser(request):
 def getUser(request):
     try:
         user = User.objects.get(username=request.GET.get('username'))
-
+        print(user)
+        password = request.GET.get('password')
+        print('PASSWORD TYPED IN: ', password)
+        print('USER.PASSWORD: ', user.password)
         if request.GET.get('password') != user.password:
+            print('FAILED TO GET THE PASSWORD!')
             raise ValueError    
 
         cosmeticObjects = []
 
+        print("User.cosmetics before loop: ", user.cosmetics)
         if user.cosmetics != "":
             for cosmetic in split(user.cosmetics):
-                cosmeticObjects.append(cosmeticsMap[cosmetic])
+                if cosmetic:
+                    cosmeticObjects.append(cosmeticsMap[cosmetic])
+        print("User.cosmetics after loop: ", user.cosmetics)
 
         taskOutput = []
 
         if user.tasks == "":
+            print('task output is empty')
             newTasks = []
 
             while len(newTasks) < 4:
@@ -235,12 +243,23 @@ def getUser(request):
             
             user.tasks = join(newTasks)
         else:
+            print('task output is not empty')
             for task in split(user.tasks):
                 if task:
                     taskOutput.append(taskList[int(task)])
 
+        print('User before save', user)
         user.save()
+        print('User after save', user)
 
+        print('user.id', user.id)
+        print('user.username', user.username)
+        print('user.level', user.level)
+        print('user.cosmetics', user.cosmetics)
+        print('user.xp', user.xp)
+        print('user.lvlxp', user.lvlxp)
+        print('user.gold', user.gold)
+        print('tasks', taskOutput)
         return JsonResponse({
             'id': user.id,
             'username':user.username,
