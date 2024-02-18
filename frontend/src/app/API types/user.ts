@@ -37,6 +37,7 @@ export interface User_GetShop_Response_GET
 export interface User_BuyCosmetic_Response_PATCH
 {
     inventory: Cosmetic[];
+    gold: number;
 }
 export interface Cosmetic{
     name: string,
