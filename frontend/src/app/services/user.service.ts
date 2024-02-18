@@ -50,6 +50,6 @@ export class UserService {
 
   public completeTask(userid: number, taskName: string): Observable<User_CompleteTask_Response_PATCH>
   {
-    return this._httpClient.patch<User_CompleteTask_Response_PATCH>(`${this._url}`, {id: userid, taskName: taskName}, {headers: this._headers});
+    return this._httpClient.patch<User_CompleteTask_Response_PATCH>(`${this._url}/completeTask`, {id: userid, taskName: taskName}, {headers: this._headers});
   }
 }
