@@ -32,6 +32,7 @@ export class AchievementListComponent implements OnInit{
     {
       this._userService.getAchievements(this.user.id).subscribe(response => {
         this.achievements = response.achievements;
+        console.log(response);
       })
     }
   }

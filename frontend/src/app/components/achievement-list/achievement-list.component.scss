@@ -3,9 +3,38 @@
 :host {
 
     .achievement-container {
-        background-color: map-get($colors, pastel-green);
-        height: 20%;
+
+        height: 100px;
         width: 80%;
+        margin-bottom: 10px;
+        border-radius: 12px;
     }
+
+    .body-items {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .achievement-name {
+        font-size: 1.5rem;
+        color: white;
+    }
+
+    .complete {
+        background-color: map-get($colors, pastel-green);
+    }
+
+    .incomplete {
+        background-color: map-get($colors, silver-gray);
+    }
+
+    .achievement-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
 
 }

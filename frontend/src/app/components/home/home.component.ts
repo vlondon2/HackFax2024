@@ -37,7 +37,7 @@ export class HomeComponent {
       case 2:
         src='assets/MediumTree.png'
         break;
-      case 3:
+      default:
         src='assets/FullTreeAndLandImage.png'
         break;
     }
@@ -53,6 +53,8 @@ export class HomeComponent {
 
     return "Undefined";
   }
+
+  
 
   public toggleNav(): void {
     console.log("Calling toggleNav!");

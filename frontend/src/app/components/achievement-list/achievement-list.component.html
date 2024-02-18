@@ -19,9 +19,26 @@
         </div>
 
         <div class="body-items">
-            <div class="achievement-container">
 
+            @for(achievement of achievements; track achievement.name)
+            {
+            @if(achievement.completed)
+            {
+            <div class="achievement-container complete">
+                <span class="achievement-name section-title-text">{{achievement.name}}</span>
+                <em class="achievement-description">{{achievement.description}}</em>
             </div>
+            }
+            @else
+            {
+            <div class="achievement-container incomplete">
+                <span class="achievement-name section-title-text">{{achievement.name}}</span>
+                <em class="achievement-description">{{achievement.description}}</em>
+            </div>
+            }
+
+            }
+
 
         </div>
 
