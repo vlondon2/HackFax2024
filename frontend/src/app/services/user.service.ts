@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User, User_BuyCosmetic_Response_PATCH, User_CompleteTask_Response_PATCH, User_Create_Response_POST, User_GetShop_Response_GET, User_Get_Response_GET } from '../API types/user';
+import { User, User_Achievements_Response_GET, User_BuyCosmetic_Response_PATCH, User_CompleteTask_Response_PATCH, User_Create_Response_POST, User_GetShop_Response_GET, User_Get_Response_GET } from '../API types/user';
 
 @Injectable({
   providedIn: 'root'
@@ -61,5 +61,9 @@ export class UserService {
   public buyCosmetic(userid: number, cosmeticName: string): Observable<User_BuyCosmetic_Response_PATCH>
   {
     return this._httpClient.patch<User_BuyCosmetic_Response_PATCH>(`${this._url}/buy`, {id: userid, itemName: cosmeticName}, {headers: this._headers});
+  }
+
+  public getAchievements(userid: number): Observable<User_Achievements_Response_GET>{
+    return this._httpClient.get<User_Achievements_Response_GET>(`${this._url}/achievements?id=${userid}`, {headers: this._headers});
   }
 }

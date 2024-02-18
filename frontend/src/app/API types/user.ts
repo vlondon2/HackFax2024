@@ -19,6 +19,11 @@ export interface User_Get_Response_GET
     gold: number
 }
 
+export interface User_Achievements_Response_GET
+{
+    achievements: Achievement[];
+}
+
 export interface User_CompleteTask_Response_PATCH
 {
     removed: Task,
@@ -50,6 +55,12 @@ export interface Task{
     name: string,
     description: string,
     xp: number
+}
+
+export interface Achievement{
+    name: string,
+    description: string,
+    completed: boolean
 }
 
 export interface User

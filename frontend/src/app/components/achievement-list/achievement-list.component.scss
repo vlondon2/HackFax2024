@@ -1,0 +1,11 @@
+@import '../../colors.scss';
+
+:host {
+
+    .achievement-container {
+        background-color: map-get($colors, pastel-green);
+        height: 20%;
+        width: 80%;
+    }
+
+}

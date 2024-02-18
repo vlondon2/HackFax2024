@@ -57,4 +57,13 @@ export class NavigationComponent {
       this._router.navigate(['/shop'])
     }, 100)
   }
+
+  public onAchievements(): void
+  {
+    console.log("Going to achievements!");
+    this.toggleNav.emit();
+    setTimeout(() => {
+      this._router.navigate(['/achievements'])
+    }, 100)
+  }
 }
