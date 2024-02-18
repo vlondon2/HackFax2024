@@ -190,7 +190,8 @@ def createDevUser(request):
             lvlxp = int(data['lvlxp']),
             gold = int(data['gold']),
             tasks = data['tasks'],
-            cosmetics = data['cosmetics']
+            cosmetics = data['cosmetics'],
+            taskCount = data['taskCount']
         )
 
         return JsonResponse({
@@ -201,7 +202,8 @@ def createDevUser(request):
             'lvlxp': user.lvlxp,
             'gold': user.gold,
             "tasks": user.tasks,
-            "cosmetics": user.cosmetics
+            "cosmetics": user.cosmetics,
+            "taskCounter": user.taskCount
         })
     except ValueError:
         return JsonResponse({"error": "User already exists"}, status=400)
@@ -313,16 +315,20 @@ def completeTask(request):
         user.gold += 5
 
     user.taskCount += 1
-
+    print('task count', user.taskCount)
     if not user.bronzeMedal and user.taskCount >= 5:
-        user.bronze = True
+        print('bronze is true')
+        user.bronzeMedal = True
     
     if not user.silverMedal and user.taskCount >= 10:
-        user.silver = True
+        print('silver is true')
+        user.silverMedal = True
     
     if not user.goldMedal and user.taskCount >= 20:
-        user.gold = True
+        print('gold is true')
+        user.goldMedal = True
 
+   
     user.save()
     
     return JsonResponse({
@@ -345,16 +351,22 @@ def buyCosmetic(request):
     userCosmetics.append(data['itemName'])
     user.cosmetics = join(userCosmetics)
     user.gold -= cosmeticsMap[data['itemName']]['price']
-    user.save()
+   
 
     owned = []
+
     for name in userCosmetics:
         if name:
             owned.append(cosmeticsMap[name])
 
-    if not user.highRoller and len(userCosmetics) >= 4:
+    print('OWNED: ', owned)
+    print('user cosmetics', userCosmetics)
+    print('user highroller', user.highRoller)
+    if not user.highRoller and len(userCosmetics) >= 5:
+        print('entering if statement')
         user.highRoller = True
 
+    user.save()
 
     return JsonResponse({
         "inventory": owned,
@@ -384,8 +396,8 @@ def getAchievements(request):
     status = {
         "Newbie":user.newbie,
         "Bronze":user.bronzeMedal,
-        "Silver":user.SilverMedal,
-        "Gold":user.GoldMedal,
+        "Silver":user.silverMedal,
+        "Gold":user.goldMedal,
         "High Roller":user.highRoller 
     }
 
