@@ -24,63 +24,69 @@ cosmeticsMap = {
 
 taskList = [
     {
+        'name': 'task0',
+        'description': 'do some shit',
+        'xp': 3
+    },
+    
+    {
         'name': 'task1',
         'description': 'do some shit?',
-        'xp': 25
+        'xp': 3
     },
 
     {
         'name': 'task2',
         'description': 'do some more shit',
-        'xp': 25
+        'xp': 3
     },
 
     {
         'name': 'task3',
         'description': 'do some shit 3',
-        'xp': 25
+        'xp': 3
     },
 
     {
         'name': 'task4',
         'description': 'do some shit 4',
-        'xp': 25
+        'xp': 3
     },
 
     {
         'name': 'task5',
         'description': 'do some shit 5',
-        'xp': 25
+        'xp': 3
     },
 
     {
         'name': 'task6',
         'description': 'do some shit 6',
-        'xp': 25
+        'xp': 3
     },
 
     {
         'name': 'task7',
         'description': 'do some shit 7',
-        'xp': 25
+        'xp': 3
     },
 
     {
         'name': 'task8',
         'description': 'do some shit 8',
-        'xp': 25
+        'xp': 3
     },
 
     {
         'name': 'task9',
         'description': 'do some shit 9',
-        'xp': 25
+        'xp': 3
     },
 
     {
         'name': 'task10',
         'description': 'do some shit 10',
-        'xp': 25
+        'xp': 3
     }
 
 ]
@@ -195,30 +201,19 @@ def getUser(request):
 def completeTask(request):
     # Getting sent: id, taskName
     data = json.loads(request.body)
-
     user = User.objects.get(id=data['id'])
-
     userTasks = split(user.tasks)
 
-    for task in userTasks:
-        if (task == data['taskName']):
-            userTasks.remove(task)
-            user.tasks = join(userTasks)
-            break
+    userTasks = [index for index in userTasks if taskList[int(index)]['name'] != data['taskName']]
+    user.tasks = join(userTasks)
 
     user.save()
     
     return JsonResponse({
         "removed": data['taskName'],
-        "tasks": userTasks,
-        "user.tasks": split(user.tasks)
+        "tasks": userTasks
     })
     
-
-
-
-    
-
 
 def join(array):
     if isinstance(array[0], int):
