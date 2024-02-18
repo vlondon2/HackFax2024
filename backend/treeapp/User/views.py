@@ -222,11 +222,12 @@ def completeTask(request):
         user.tasks = ""
 
     remainingTasks = []
-    for name in userTasks:
-        remainingTasks.append(findTask(name))
+    for i in userTasks:
+        remainingTasks.append(taskList[int(i)])
 
-    # Get xp
-    removedTask = findTask(data['taskName'])
+    for task in taskList:
+        if task['name'] == data['taskName']:
+            removedTask = task
 
     user.xp += removedTask['xp']
     # Check if leveled up
@@ -246,13 +247,6 @@ def completeTask(request):
         "level": user.level,
         "lvlxp": user.lvlxp
     })
-
-def findTask(name):
-    for task in taskList:
-        if task['name'] == name:
-            return task
-    
-    return None
 
 
 @csrf_exempt
