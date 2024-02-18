@@ -94,7 +94,7 @@ export class SignInComponent {
           cosmetics: [],
           xp: 0,
           lvlxp: 10,
-          tasks: [],
+          tasks: user.tasks,
           gold: 0
       }
 

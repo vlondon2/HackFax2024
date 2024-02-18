@@ -25,14 +25,11 @@ export class ShopComponent implements OnInit{
   }
 
   public ngOnInit(): void {
-    this._userService.getShop().subscribe((response) => {
-      console.log("Response", response);
+    this._userService.getShop(this.user!.id).subscribe((response) => {
       this.cosmetics = response.cosmetics;
-      console.log("Cosmetics", this.cosmetics)
     })
   }
   public toggleNav(): void {
-    console.log("Calling toggleNav!");
     this.drawer?.toggle();
   }
 
@@ -42,5 +39,19 @@ export class ShopComponent implements OnInit{
       return cosmetic.price > this.user!.gold;
     }
     return true;
+  }
+
+  public buyCosmetic(cosmeticName: string): void{
+    this._userService.buyCosmetic(this.user!.id, cosmeticName).subscribe(response => {
+      this._userService.user!.cosmetics = response.inventory;
+      this._userService.getShop(this.user!.id).subscribe((response) => {
+        this.cosmetics = response.cosmetics;
+      })
+    },
+    error => {
+      console.log("Error!", error);
+    })
+
+
   }
 }

@@ -3,8 +3,8 @@ export interface User_Create_Response_POST
     id: number,
     username: string,
     level: number,
-    cosmetics: string[],
-    tasks: string[]
+    cosmetics: Cosmetic[],
+    tasks: Task[]
 }
 
 export interface User_Get_Response_GET
@@ -29,11 +29,15 @@ export interface User_CompleteTask_Response_PATCH
     gold: number
 }
 
-export interface User_GetShop_Response_PATCH
+export interface User_GetShop_Response_GET
 {
     cosmetics: Cosmetic[];
 }
 
+export interface User_BuyCosmetic_Response_PATCH
+{
+    inventory: Cosmetic[];
+}
 export interface Cosmetic{
     name: string,
     price: number,
