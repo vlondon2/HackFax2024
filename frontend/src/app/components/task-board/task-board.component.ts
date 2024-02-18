@@ -7,7 +7,7 @@ import { UserService } from 'src/app/services/user.service';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-task-board',
+  selector: 'task-board',
   standalone: true,
   imports: [MatIcon, MatDrawer, MatDrawerContainer, MatDrawerContent, NavigationComponent, MatButtonModule],
   templateUrl: './task-board.component.html',
@@ -32,7 +32,10 @@ export class TaskBoardComponent implements OnInit{
   }
 
   public completeTask(task: Task): void {
+
+    console.log(task);
     this._userService.completeTask(this.user!.id, task.name).subscribe(response => {
+      console.log(response);
       this.tasks = response.tasks;
       this._userService.user!.xp = response.xp;
       this._userService.user!.lvlxp = response.lvlxp;

@@ -1,0 +1,32 @@
+<mat-drawer-container class="page-container tasks-container">
+    <mat-drawer #drawer class="nav-drawer">
+        <navigation (toggleNav)="toggleNav()">
+        </navigation>
+    </mat-drawer>
+    <mat-drawer-content class="page-content-container">
+        <div class="header-items">
+            <button class="hamburger-button" mat-fab (click)="toggleNav()">
+                <mat-icon>
+                    menu
+                </mat-icon>
+            </button>
+            <div class="shop-frame title-frame">
+                <span class="shop-title-text section-title-text">
+                    Daily Tasks
+                </span>
+            </div>
+        </div>
+        <div class="body-items">
+            @for(cosmetic of cosmetics; track cosmetic.name)
+            {
+            <div class="shop-item">
+
+
+
+            </div>
+            }
+        </div>
+    </mat-drawer-content>
+
+
+</mat-drawer-container>

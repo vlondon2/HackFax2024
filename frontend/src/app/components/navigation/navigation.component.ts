@@ -48,4 +48,13 @@ export class NavigationComponent {
       this._router.navigate(['']);
     }, 100)
   }
+
+  public onShop(): void
+  {
+    console.log("Going to Shop!");
+    this.toggleNav.emit();
+    setTimeout(() => {
+      this._router.navigate(['/shop'])
+    }, 100)
+  }
 }
