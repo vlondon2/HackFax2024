@@ -68,3 +68,32 @@ body {
     padding: 10px;
     height: 10%;
 }
+
+.coin-count-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.coin-count-text {
+    color: white;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    font-size: 0.8rem;
+    z-index: 5;
+    transform: translateY(1px);
+}
+
+.coin-image-container {
+    width: 40px;
+    transform: rotateZ(270deg);
+    display: flex;
+}
+
+.coin-image {
+    width: 100%;
+    height: auto;
+
+}

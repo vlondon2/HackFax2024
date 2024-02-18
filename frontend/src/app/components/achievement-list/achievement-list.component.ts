@@ -42,4 +42,12 @@ export class AchievementListComponent implements OnInit{
     this.drawer?.toggle();
   }
 
+  public getUserCoins(): number {
+    if(this.user)
+    {
+      return this.user.gold;
+    }
+
+    return 0;
+  }
 }

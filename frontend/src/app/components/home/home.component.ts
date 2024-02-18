@@ -76,6 +76,15 @@ export class HomeComponent {
     }
   }
 
+  public getUserCoins(): number {
+    if(this.user)
+    {
+      return this.user.gold;
+    }
+
+    return 0;
+  }
+
   public hasLamp(): boolean | undefined {
     if(!this.user)
     {

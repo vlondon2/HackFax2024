@@ -15,6 +15,14 @@
                     Shop
                 </span>
             </div>
+            <div class="coin-count-container">
+                <span class="coin-count-text section-title-text">
+                    {{getUserCoins()}}
+                </span>
+                <div class="coin-image-container">
+                    <img src="assets/GoldCoin.png" class="coin-image">
+                </div>
+            </div>
         </div>
         <div class="body-items">
             @for(cosmetic of cosmetics; track cosmetic.name)
@@ -28,7 +36,8 @@
                     <span class="cosmetic-title">{{cosmetic.name}}</span>
                 </div>
                 <div class="button-container">
-                    <button mat-button (click)="buyCosmetic(cosmetic.name)" class="buy-button" [disabled]="userHasEnoughGold(cosmetic)">
+                    <button mat-button (click)="buyCosmetic(cosmetic.name)" class="buy-button"
+                        [disabled]="userHasEnoughGold(cosmetic)">
                         {{cosmetic.price}}
                     </button>
                 </div>
