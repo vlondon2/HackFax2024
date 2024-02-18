@@ -1,3 +1,4 @@
+import string
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
@@ -10,7 +11,7 @@ from .models import User
 
 cosmeticsMap = {
     'item1': {
-        'name': 'item',
+        'name': 'item1',
         'price': 10,
         'path': 'path/to/item'
     },
@@ -142,11 +143,9 @@ def createDevUser(request):
 @csrf_exempt
 def getUser(request):
     try:
-        data = json.loads(request.body)
+        user = User.objects.get(username=request.GET.get('username'))
 
-        user = User.objects.get(username=data['username'])
-
-        if data['password'] != user.password:
+        if request.GET.get('password') != user.password:
             raise ValueError    
 
         cosmeticObjects = []
@@ -169,30 +168,66 @@ def getUser(request):
             user.tasks = join(newTasks)
         else:
             for task in split(user.tasks):
-                taskOutput.append(taskList[int(task)])
+                if task:
+                    taskOutput.append(taskList[int(task)])
 
+        user.save()
 
         return JsonResponse({
             'id': user.id,
             'username':user.username,
             'level': user.level,
             'cosmetics': cosmeticObjects,
+            'xp': user.xp,
+            'lvlxp': user.lvlxp,
+            'gold': user.gold,
             'tasks': taskOutput
         })
     
     except User.DoesNotExist:
-        return JsonResponse({"eror": "User not found."}, status=404)
+        return JsonResponse({"error": "User not found."}, status=404)
     except ValueError as e:
-        return JsonResponse({"error": "Incorrect Password"}, status=401)
+        return JsonResponse({"error": str(e)}, status=401)
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=400)
+
+@csrf_exempt
+def completeTask(request):
+    # Getting sent: id, taskName
+    data = json.loads(request.body)
+
+    user = User.objects.get(id=data['id'])
+
+    userTasks = split(user.tasks)
+
+    for task in userTasks:
+        if (task == data['taskName']):
+            userTasks.remove(task)
+            user.tasks = join(userTasks)
+            break
+
+    user.save()
+    
+    return JsonResponse({
+        "removed": data['taskName'],
+        "tasks": userTasks,
+        "user.tasks": split(user.tasks)
+    })
+    
+
+
+
     
 
 
 def join(array):
-    return ','.join(array)
+    if isinstance(array[0], int):
+        return ','.join(str(num) for num in array)
+    else:
+        return ','.join(map(str, array))
     
-def split(array):
-    return array.split(",")
+    
+def split(x):
+    return x.split(",")
 
     
