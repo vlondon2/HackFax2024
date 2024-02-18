@@ -20,14 +20,15 @@ export class TaskBoardComponent implements OnInit{
   public tasks: Task[];
   constructor(@Inject(UserService) private _userService: UserService){
     this.user = this._userService.user;
-    this.tasks = [{name: "Recycle", description: "Place long ass description that will get cut off hopefully some plastic or other recycable materials in the recycling bin.", xp: 3}, {name: "Recycle", description: "Description", xp: 3}, {name: "Recycle", description: "Description", xp: 3}, {name: "Recycle", description: "Description", xp: 3}];
+    this.tasks = [];
+    //this.tasks = [{name: "Recycle", description: "Place long ass description that will get cut off hopefully some plastic or other recycable materials in the recycling bin.", xp: 3}, {name: "Recycle", description: "Description", xp: 3}, {name: "Recycle", description: "Description", xp: 3}, {name: "Recycle", description: "Description", xp: 3}];
   }
 
   public ngOnInit(): void {
-    // if(this.user)
-    // {
-    //   this.tasks = this.user.tasks;
-    // }
+    if(this.user)
+    {
+      this.tasks = this.user.tasks;
+    }
   }
 
   public toggleNav(): void {

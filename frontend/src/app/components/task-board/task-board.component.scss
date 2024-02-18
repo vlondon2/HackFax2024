@@ -76,5 +76,13 @@
         -webkit-box-orient: vertical;
     }
 
+    .xp-text {
+        margin-left: 10px;
+    }
+
+    .complete-button {
+        background-color: map-get($colors, pastel-green);
+        font-size: x-large;
+    }
 
 }
