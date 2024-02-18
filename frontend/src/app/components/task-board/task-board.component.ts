@@ -31,6 +31,21 @@ export class TaskBoardComponent implements OnInit{
     }
   }
 
+  public completeTask(task: Task): void {
+    this._userService.completeTask(this.user!.id, task.name).subscribe(response => {
+      this.tasks = response.tasks;
+      this._userService.user!.xp = response.xp;
+      this._userService.user!.lvlxp = response.lvlxp;
+      this._userService.user!.xp = response.xp;
+      this._userService.user!.level = response.level;
+    },
+    error => {
+      console.log("Error! ", error);
+    })
+
+
+  }
+
   public toggleNav(): void {
     console.log("Calling toggleNav!");
     this.drawer?.toggle();

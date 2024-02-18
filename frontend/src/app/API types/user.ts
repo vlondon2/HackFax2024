@@ -19,6 +19,15 @@ export interface User_Get_Response_GET
     gold: number
 }
 
+export interface User_CompleteTask_Response_PATCH
+{
+    removed: Task,
+    tasks: Task[],
+    xp: number,
+    level: number,
+    lvlxp: number
+}
+
 export interface Cosmetic{
     name: string,
     price: 10,
