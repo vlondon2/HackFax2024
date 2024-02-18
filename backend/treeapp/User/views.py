@@ -341,7 +341,7 @@ def buyCosmetic(request):
 
 @csrf_exempt
 def getAllCosmetics(request):
-    user = User.objects.get(id=int(request.GET.get('id')))
+    user = User.objects.get(id=request.GET.get('id'))
 
     allCosmetics = []
     for cosKey in cosmeticsMap:
