@@ -348,7 +348,8 @@ def getAllCosmetics(request):
         allCosmetics.append(cosmeticsMap[cosKey])
 
     for name in split(user.cosmetics):
-        allCosmetics.remove(cosmeticsMap[name])
+        if name:
+            allCosmetics.remove(cosmeticsMap[name])
 
     return JsonResponse({
         'cosmetics': allCosmetics
