@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User, User_BuyCosmetic_Response_PATCH, User_CompleteTask_Response_PATCH, User_Create_Response_POST, User_GetShop_Response_GET, User_Get_Response_GET } from '../API types/user';
