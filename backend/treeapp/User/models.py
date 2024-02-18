@@ -12,5 +12,12 @@ class User(models.Model):
     cosmetics = models.CharField(max_length=1000, default='')
     achievements = models.CharField(max_length=1000, default='')
     tasks = models.CharField(max_length=1000, default='')
+    taskCount = models.IntegerField()
+    newbie = models.BooleanField(default=False)
+    bronze = models.BooleanField(default=False)
+    silver = models.BooleanField(default=False)
+    gold = models.BooleanField(default=False)
+    highRoller = models.BooleanField(default=False)
+
 
     
